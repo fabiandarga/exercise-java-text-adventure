@@ -2,6 +2,7 @@ package de.fabiandarga.commands;
 
 import de.fabiandarga.GameState;
 import de.fabiandarga.types.Area;
+import de.fabiandarga.types.Location;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -18,14 +19,17 @@ public class CreateRandomDirectionsCommand implements Command {
                 .toArray(Area[]::new);
 
         int randomLeft = rand.nextInt(availableValuesForLeft.length);
-        gs.setToLeft(availableValuesForLeft[randomLeft]);
+
+        Location nextLeft = new Location(availableValuesForLeft[randomLeft], 1);
+        gs.setNextLeft(nextLeft);
 
         Area[] availableValuesForRight = Arrays
                 .stream(availableValuesForLeft)
-                .filter(x -> x != gs.getToLeft())
+                .filter(x -> x != gs.getNextLeft().getArea())
                 .toArray(Area[]::new);
 
         int randomRight = rand.nextInt(availableValuesForRight.length);
-        gs.setToRight(availableValuesForRight[randomRight]);
+        Location nextRight = new Location(availableValuesForRight[randomRight], 1);
+        gs.setNextRight(nextRight);
     }
 }

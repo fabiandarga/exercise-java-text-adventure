@@ -1,11 +1,12 @@
 package de.fabiandarga;
 
 import de.fabiandarga.types.Area;
+import de.fabiandarga.types.Location;
 
 public class GameState {
-    Area location = Area.SPRING;
-    Area toLeft;
-    Area toRight;
+    Area currentArea = Area.SPRING;
+    Location nextLeft;
+    Location nextRight;
     int stepsRemaining = 10;
 
 
@@ -20,35 +21,27 @@ public class GameState {
         return stepsRemaining;
     }
 
-    public void setStepsRemaining(int stepsRemaining) {
-        this.stepsRemaining = stepsRemaining;
+    public Location getNextLeft() {
+        return nextLeft;
     }
 
-    public Area getToLeft() {
-        return toLeft;
+    public void setNextLeft(Location nextLeft) {
+        this.nextLeft = nextLeft;
     }
 
-    public void setToLeft(Area toLeft) {
-        this.toLeft = toLeft;
+    public Location getNextRight() {
+        return nextRight;
     }
 
-    public Area getToRight() {
-        return toRight;
+    public void setNextRight(Location nextRight) {
+        this.nextRight = nextRight;
     }
 
-    public void setToRight(Area toRight) {
-        this.toRight = toRight;
+    public Area getCurrentArea() {
+        return currentArea;
     }
 
-    public Area getLocation() {
-        return location;
+    public void setCurrentArea(Area currentArea) {
+        this.currentArea = currentArea;
     }
-
-    public void setLocation(Area location) {
-        this.location = location;
-    }
-
-    // items
-    // point
-    // steps
 }

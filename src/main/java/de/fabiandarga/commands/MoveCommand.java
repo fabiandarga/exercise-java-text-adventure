@@ -18,13 +18,13 @@ public class MoveCommand implements Command {
 
         Area next;
         if (this.direction == Direction.LEFT) {
-            next = gs.getToLeft();
+            next = gs.getNextLeft().getArea();
         } else if (this.direction == Direction.RIGHT) {
-            next = gs.getToRight();
+            next = gs.getNextRight().getArea();
         } else {
             throw new RuntimeException("This direction is not implemented in the MoveCommand");
         }
 
-        gs.setLocation(next);
+        gs.setCurrentArea(next);
     }
 }
