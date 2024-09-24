@@ -15,6 +15,10 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         boolean gameRunning = true;
+        GameState gs = new GameState();
+
+        System.out.println("Where do you want to go?");
+        System.out.println("[left] to green room | [right] to blue room");
 
         // Then we start a loop
         while (gameRunning) {
@@ -24,6 +28,14 @@ public class Main {
 
             // execute some command
             switch (input) {
+                case "left":
+                    gs.setLocation(Area.AQUIFER);
+                    System.out.println("You swam into the " + Area.AQUIFER);
+                    break;
+                case "right":
+                    gs.setLocation(Area.OCEAN);
+                    System.out.println("You swam into the " + Area.OCEAN);
+                    break;
                 case "quit":
                     // quit the loop when "quit" was entered or then the game is over
                     gameRunning = false;
