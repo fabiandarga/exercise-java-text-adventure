@@ -7,4 +7,9 @@ public enum Area {
     LAKE,
     RIVER,
     OCEAN,
+    POND,
+    STREAM,
+    WATERFALL,
+    CANAL,
+    GEYSER,
 }

@@ -3,7 +3,6 @@ package de.fabiandarga;
 import de.fabiandarga.commands.Command;
 import de.fabiandarga.commands.CreateRandomDirectionsCommand;
 import de.fabiandarga.commands.MoveCommand;
-import de.fabiandarga.types.Area;
 import de.fabiandarga.types.Direction;
 
 import java.util.Scanner;

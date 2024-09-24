@@ -21,6 +21,11 @@ We will add some game idea, a win and a loss condition.
 Add more commands to collect items and show collected items.
 Also let's save the current game state to our database.
 
+* Come up with some narrative about the player character
+  * Are we a fish, a drop of water, some plastic trash?
+* Come up with some possible win- and loss-conditions
+  * From a story perspective
+  * And from a mechanical perspective
 
 ## Day 3
 We will create random items when a new game is started.
