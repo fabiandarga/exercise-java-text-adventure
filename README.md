@@ -23,9 +23,18 @@ Also let's save the current game state to our database.
 
 * Come up with some narrative about the player character
   * Are we a fish, a drop of water, some plastic trash?
+  * ->  Salmon
 * Come up with some possible win- and loss-conditions
   * From a story perspective
+    * -> Find Nemo
   * And from a mechanical perspective
+    * -> get eaten
+    * -> get stranded
+    * -> get poised
+// The player has only 10 actions
+[left] River (Trail of Orange)
+[right] Lake (Strong Trail of Orange, and you hear a Bear)
+
 
 ## Day 3
 We will create random items when a new game is started.
