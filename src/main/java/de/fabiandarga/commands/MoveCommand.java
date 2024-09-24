@@ -13,16 +13,18 @@ public class MoveCommand implements Command {
     }
 
     @Override
-    public void execute(GameState gs) {
-        // direction (options)
+    public void execute(GameState gs) throws Exception {
+        gs.decreaseStepsRemaining();
+
+        Area next;
         if (this.direction == Direction.LEFT) {
-            Area next = gs.getToLeft();
-            gs.setLocation(next);
+            next = gs.getToLeft();
         } else if (this.direction == Direction.RIGHT) {
-            Area next = gs.getToRight();
-            gs.setLocation(next);
+            next = gs.getToRight();
         } else {
             throw new RuntimeException("This direction is not implemented in the MoveCommand");
         }
+
+        gs.setLocation(next);
     }
 }

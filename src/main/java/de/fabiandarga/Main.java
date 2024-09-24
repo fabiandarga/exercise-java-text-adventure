@@ -25,32 +25,40 @@ public class Main {
 
         // Then we start a loop
         while (gameRunning) {
-            System.out.println("Where do you want to go?");
+            System.out.println("Where do you want to swim? (You have " + gs.getStepsRemaining() + " step left)");
             System.out.println("[left] for " + gs.getToLeft() + " | [right] for " + gs.getToRight() );
             System.out.print("> ");
             // Read from  input
             String input = scanner.nextLine();
 
             // execute some command
-            switch (input) {
-                case "left":
-                    Command moveLeft = new MoveCommand(Direction.LEFT);
-                    moveLeft.execute(gs);
-                    new CreateRandomDirectionsCommand().execute(gs);
-                    System.out.println("You swam into the " + gs.getLocation());
-                    break;
-                case "right":
-                    Command moveRight = new MoveCommand(Direction.RIGHT);
-                    moveRight.execute(gs);
-                    new CreateRandomDirectionsCommand().execute(gs);
-                    System.out.println("You swam into the " + gs.getLocation());
-                    break;
-                case "quit":
-                    // quit the loop when "quit" was entered or then the game is over
+            try {
+                switch (input) {
+                    case "left":
+                        Command moveLeft = new MoveCommand(Direction.LEFT);
+                        moveLeft.execute(gs);
+                        new CreateRandomDirectionsCommand().execute(gs);
+                        System.out.println("You swam into the " + gs.getLocation());
+                        break;
+                    case "right":
+                        Command moveRight = new MoveCommand(Direction.RIGHT);
+                        moveRight.execute(gs);
+                        new CreateRandomDirectionsCommand().execute(gs);
+                        System.out.println("You swam into the " + gs.getLocation());
+                        break;
+                    case "quit":
+                        // quit the loop when "quit" was entered or then the game is over
+                        gameRunning = false;
+                        break;
+                    case null, default:
+                        System.out.println("Wrong input!");
+                }
+                if (gs.stepsRemaining < 1) {
                     gameRunning = false;
-                    break;
-                case null, default:
-                    System.out.println("Wrong input!");
+                    System.out.println("You have exhausted yourself. Try to find Nemo tomorrow. Game Over!");
+                }
+            } catch (Exception e) {
+                throw new RuntimeException(e);
             }
         }
 
