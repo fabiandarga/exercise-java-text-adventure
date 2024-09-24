@@ -1,4 +1,4 @@
-package de.fabiandarga;
+package de.fabiandarga.types;
 
 public enum Area {
     SPRING,

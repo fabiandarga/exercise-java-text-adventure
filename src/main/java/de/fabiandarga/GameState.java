@@ -1,5 +1,7 @@
 package de.fabiandarga;
 
+import de.fabiandarga.types.Area;
+
 public class GameState {
     Area location = Area.SPRING;
 

@@ -1,5 +1,7 @@
 package de.fabiandarga;
 
+import de.fabiandarga.types.Area;
+
 import java.util.Scanner;
 
 public class Main {
