@@ -3,10 +3,12 @@ package de.fabiandarga.types;
 public class Location {
     private final Area area;
     private final int reward;
+    private final Danger danger;
 
-    public Location(Area area, int reward) {
+    public Location(Area area, int reward, Danger danger) {
         this.area = area;
         this.reward = reward;
+        this.danger = danger;
     }
 
     public Area getArea() {
@@ -17,8 +19,13 @@ public class Location {
         return reward;
     }
 
+    public Danger getDanger() {
+        return danger;
+    }
+
     @Override
     public String toString() {
-        return this.area + " with " + this.reward + " sparkling scales";
+        // Add the Danger to the output if there is some
+        return this.area + " with " + this.reward + " sparkling scales (" + this.danger+ ")";
     }
 }

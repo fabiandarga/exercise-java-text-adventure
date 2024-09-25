@@ -29,6 +29,7 @@ public class MoveCommand implements Command {
         gs.setCurrentArea(nextLocation.getArea());
 
         // We will check for danger and only reward if nothing happens
+        // switch-case depending on the kind of danger: Bear/Shark: 30%, BEAR_SHARK: 50%
         gs.addScales(nextLocation.getReward());
     }
 }
