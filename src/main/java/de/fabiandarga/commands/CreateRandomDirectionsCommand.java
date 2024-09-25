@@ -19,8 +19,8 @@ public class CreateRandomDirectionsCommand implements Command {
                 .toArray(Area[]::new);
 
         int randomLeft = rand.nextInt(availableValuesForLeft.length);
-
-        Location nextLeft = new Location(availableValuesForLeft[randomLeft], 1);
+        int randomRewards1 = rand.nextInt(4);
+        Location nextLeft = new Location(availableValuesForLeft[randomLeft], randomRewards1);
         gs.setNextLeft(nextLeft);
 
         Area[] availableValuesForRight = Arrays
@@ -29,7 +29,8 @@ public class CreateRandomDirectionsCommand implements Command {
                 .toArray(Area[]::new);
 
         int randomRight = rand.nextInt(availableValuesForRight.length);
-        Location nextRight = new Location(availableValuesForRight[randomRight], 1);
+        int randomRewards2 = rand.nextInt(4);
+        Location nextRight = new Location(availableValuesForRight[randomRight], randomRewards2);
         gs.setNextRight(nextRight);
     }
 }

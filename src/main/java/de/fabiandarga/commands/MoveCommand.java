@@ -3,6 +3,7 @@ package de.fabiandarga.commands;
 import de.fabiandarga.GameState;
 import de.fabiandarga.types.Area;
 import de.fabiandarga.types.Direction;
+import de.fabiandarga.types.Location;
 
 public class MoveCommand implements Command {
 
@@ -16,15 +17,18 @@ public class MoveCommand implements Command {
     public void execute(GameState gs) throws Exception {
         gs.decreaseStepsRemaining();
 
-        Area next;
+        Location nextLocation;
         if (this.direction == Direction.LEFT) {
-            next = gs.getNextLeft().getArea();
+            nextLocation = gs.getNextLeft();
         } else if (this.direction == Direction.RIGHT) {
-            next = gs.getNextRight().getArea();
+            nextLocation = gs.getNextRight();
         } else {
             throw new RuntimeException("This direction is not implemented in the MoveCommand");
         }
 
-        gs.setCurrentArea(next);
+        gs.setCurrentArea(nextLocation.getArea());
+
+        // We will check for danger and only reward if nothing happens
+        gs.addScales(nextLocation.getReward());
     }
 }

@@ -8,7 +8,15 @@ public class GameState {
     Location nextLeft;
     Location nextRight;
     int stepsRemaining = 10;
+    int scalesCollected = 0;
 
+    public void addScales(int amount) {
+        this.scalesCollected += amount;
+    }
+
+    public int getScalesCollected() {
+        return scalesCollected;
+    }
 
     public void decreaseStepsRemaining() throws Exception {
         if (this.stepsRemaining == 0) {

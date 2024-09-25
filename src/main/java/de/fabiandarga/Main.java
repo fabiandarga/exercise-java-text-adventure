@@ -39,12 +39,14 @@ public class Main {
                         moveLeft.execute(gs);
                         new CreateRandomDirectionsCommand().execute(gs);
                         System.out.println("You swam into the " + gs.getCurrentArea());
+                        System.out.println("You have "+ gs.getScalesCollected() +" Scales now.");
                         break;
                     case "right":
                         Command moveRight = new MoveCommand(Direction.RIGHT);
                         moveRight.execute(gs);
                         new CreateRandomDirectionsCommand().execute(gs);
                         System.out.println("You swam into the " + gs.getCurrentArea());
+                        System.out.println("You have "+ gs.getScalesCollected() +" Scales now.");
                         break;
                     case "quit":
                         // quit the loop when "quit" was entered or then the game is over
@@ -53,7 +55,10 @@ public class Main {
                     case null, default:
                         System.out.println("Wrong input!");
                 }
-                if (gs.stepsRemaining < 1) {
+                if (gs.getScalesCollected() >= 10) {
+                    gameRunning = false;
+                    System.out.println("You have Found Nemo. You swim off together happily!");
+                } else if (gs.stepsRemaining < 1) {
                     gameRunning = false;
                     System.out.println("You have exhausted yourself. Try to find Nemo tomorrow. Game Over!");
                 }
