@@ -1,6 +1,7 @@
 package de.fabiandarga;
 
 import de.fabiandarga.types.Area;
+import de.fabiandarga.types.Danger;
 import de.fabiandarga.types.Location;
 
 public class GameState {
@@ -9,9 +10,22 @@ public class GameState {
     Location nextRight;
     int stepsRemaining = 10;
     int scalesCollected = 0;
+    Danger eatenBy;
+
+    public Danger getEatenBy() {
+        return eatenBy;
+    }
+
+    public void setEatenBy(Danger eatenBy) {
+        this.eatenBy = eatenBy;
+    }
 
     public void addScales(int amount) {
         this.scalesCollected += amount;
+    }
+
+    public void removeScales(int amount) {
+        this.scalesCollected -= amount;
     }
 
     public int getScalesCollected() {

@@ -5,4 +5,5 @@ public enum Danger {
     BEAR,
     SHARK,
     BEAR_SHARK,
+    JELLYFISH,
 }

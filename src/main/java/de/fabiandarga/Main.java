@@ -20,7 +20,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         boolean gameRunning = true;
-        GameState gs = new GameState();
+        GameState gs = new GameState(); // try load from db
         new CreateRandomDirectionsCommand().execute(gs);
 
         // Then we start a loop
@@ -55,13 +55,18 @@ public class Main {
                     case null, default:
                         System.out.println("Wrong input!");
                 }
-                if (gs.getScalesCollected() >= 10) {
+                if (gs.getEatenBy() != null) {
+                    gameRunning = false;
+                    System.out.println("You got eaten by a " + gs.getEatenBy() + "!");
+                } else if (gs.getScalesCollected() >= 10) {
                     gameRunning = false;
                     System.out.println("You have Found Nemo. You swim off together happily!");
                 } else if (gs.stepsRemaining < 1) {
                     gameRunning = false;
                     System.out.println("You have exhausted yourself. Try to find Nemo tomorrow. Game Over!");
                 }
+                // if gameRunning == false -> remove from db
+                // saving game here
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

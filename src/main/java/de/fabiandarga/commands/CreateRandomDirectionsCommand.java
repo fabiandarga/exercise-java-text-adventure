@@ -11,56 +11,48 @@ import java.util.Random;
 public class CreateRandomDirectionsCommand implements Command {
     @Override
     public void execute(GameState gs) {
-        Random rand = new Random();
-        Area[] values = Area.values();
-
-        Area[] availableValuesForLeft = Arrays
-                .stream(values)
-                .filter(x -> x != Area.SPRING)
-                .toArray(Area[]::new);
-
-        int randomLeft = rand.nextInt(availableValuesForLeft.length);
-        Area areaLeft = availableValuesForLeft[randomLeft];
-
-        int randomRewards1 = rand.nextInt(4);
-        Danger dangerLeft = Danger.NONE;
-        if (randomRewards1 == 3) {
-            dangerLeft = Danger.BEAR_SHARK;
-        } else if (randomRewards1 == 2) {
-            switch (areaLeft) {
-                case Area.LAKE, Area.RIVER -> dangerLeft = Danger.BEAR;
-                case Area.OCEAN -> dangerLeft = Danger.SHARK;
-            }
-        }
-
-        Location nextLeft = new Location(areaLeft, randomRewards1, dangerLeft);
+        // generate left Location
+        Area[] availableAreasForLeft = this.getFilteredAreas(Area.values(), Area.SPRING);
+        Location nextLeft = this.generateRandomLocation(availableAreasForLeft);
         gs.setNextLeft(nextLeft);
-
-        // Right side
-        Area[] availableValuesForRight = Arrays
-                .stream(availableValuesForLeft)
-                .filter(x -> x != gs.getNextLeft().getArea())
-                .toArray(Area[]::new);
-
-        int randomRight = rand.nextInt(availableValuesForRight.length);
-        int randomRewards2 = rand.nextInt(4);
-        Area areaRight = availableValuesForRight[randomRight];
-        Danger dangerRight = Danger.NONE;
-        if (randomRewards2 == 3) {
-            dangerRight = Danger.BEAR_SHARK;
-        } else if (randomRewards2 == 2) {
-            switch (areaRight) {
-                case Area.LAKE, Area.RIVER -> dangerRight = Danger.BEAR;
-                case Area.OCEAN -> dangerRight = Danger.SHARK;
-            }
-        }
-        Location nextRight = new Location(areaRight, randomRewards2, dangerRight);
+        // generate right Location
+        Area[] availableAreasForRight = this.getFilteredAreas(
+                availableAreasForLeft,
+                gs.getNextLeft().getArea()
+        );
+        Location nextRight = this.generateRandomLocation(availableAreasForRight);
         gs.setNextRight(nextRight);
     }
-    /*
-    generateLocation(Areas[] excludeAreas) {
-        return new Location() //...
-    }
-    */
 
+    private Area[] getFilteredAreas(Area[] values, Area toExclude) {
+        return Arrays
+                .stream(values)
+                .filter(x -> x != toExclude)
+                .toArray(Area[]::new);
+    }
+
+    private Location generateRandomLocation(Area[] availableAreas) {
+        Random rand = new Random();
+        int areaIndex = rand.nextInt(availableAreas.length);
+        Area area = availableAreas[areaIndex];
+
+        int rewards = rand.nextInt(4);
+
+        Danger danger = Danger.NONE;
+        if (rewards == 3) {
+            danger = Danger.BEAR_SHARK;
+        } else if (rewards == 2) {
+            switch (area) {
+                case LAKE, RIVER -> danger = Danger.BEAR;
+                case OCEAN -> danger = Danger.SHARK;
+                case AQUIFER, SEA, CANAL -> danger = Danger.JELLYFISH;
+            }
+        } else if (rewards == 1) {
+            switch (area) {
+                case LAKE, RIVER, OCEAN, AQUIFER, SEA, CANAL -> danger = Danger.JELLYFISH;
+            }
+        }
+
+        return new Location(area, rewards, danger);
+    }
 }
